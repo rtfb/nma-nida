@@ -63,14 +63,41 @@
     </section>
 
     <section data-background="./img/bg.png">
-        <h2>Let's see some code!</h2>
-        <pre><code data-trim contenteditable>
+        <section>
+            <h2>Let's see some Python code:</h2>
+            <pre><code data-trim contenteditable>
 def triplicate(lst):
     return map(lambda ch: ch*3, lst)
 
 triplicate(['a', 'b', 'c'])
 => ['aaa', 'bbb', 'ccc']
-        </code></pre>
+            </code></pre>
+        </section>
+        <section>
+            <h2>And now in JavaScript:</h2>
+            <pre><code data-trim contenteditable>
+function triplicate(arr) {
+    return arr.map(function(item) {
+        return item + item + item;
+    });
+}
+
+triplicate(['a', 'b', 'c']);
+=> ["aaa", "bbb", "ccc"]
+            </code></pre>
+        </section>
+        <section>
+            <h2>And in Lisp, just for the kicks :-)</h2>
+            <pre><code data-trim contenteditable>
+(defun triplicate (list)
+  (mapcar (lambda (item)
+            (concatenate 'string item item item))
+          list))
+
+(triplicate '("a" "b" "c"))
+=> ("aaa", "bbb", "ccc")
+            </code></pre>
+        </section>
     </section>
 
     <section data-background="./img/bg.png">
