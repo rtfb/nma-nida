@@ -142,11 +142,97 @@ f(g(h(i(initial_data))))
         <h3>Why bother?</h3>
         <p>Parallelism!</p>
         <p>Abstractions</p>
-        <p>Unix</p>
         <p>Formal provability</p>
         <p>Modularity</p>
         <p>Composability</p>
         <p>Lazy evaluation</p>
+        <p>Unix</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Parallelism</h3>
+        <p>Modern GPU can run 3000 threads <strong>at once!</strong></p>
+        <p>Modern server farm can do much more</p>
+        <p>Yes, you <strong>will</strong> use server farms, most likely on the cloud</p>
+        <p>And it's pretty much impossible to program one of the above w/o functional approach</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Abstractions</h3>
+        <section>
+            <pre><code data-trim contenteditable>
+vector&lt;string&gt; vs{"a", "b", "c"};
+for (vector&lt;string&gt;::iterator it = vs.begin(); it != vs.end(); ++it) {
+    do_something_with(*it + *it + *it);
+}
+            </code></pre>
+        </section>
+        <section>
+            <pre><code data-trim contenteditable>
+vector&lt;string&gt; vs{"a", "b", "c"};
+for (auto &s : vs) {
+    do_something_with(s + s + s);
+}
+            </code></pre>
+        </section>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Formal provability</h3>
+        <p>The idea is to generate a formal proof with help of invariants.</p>
+        <p>Works for other programming styles as well, but FP makes it easier</p>
+        <p>Not that practical as some researchers would like us believe :-)</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Modularity</h3>
+        <p>Since FP puts some draconian constraints, it becomes necessary to
+        break down things into smaller pieces. And smaller pieces are better
+        pieces.</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Composability</h3>
+        <p>Remember?</p>
+        <pre><code data-trim contenteditable>
+f(g(h(i(initial_data))))
+=> final_result
+        </code></pre>
+        <p>This is more useful than it seems at first glance, since you can then
+        recompose functions from other places. You can do that with other code,
+        too, but FP makes it easer as long as you have uniform data
+        structures.</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Lazy evaluation</h3>
+        <p>Infinite data structures, generators and such...</p>
+        <p>Found in Python, C#, F#, Haskell elsewhere.</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+        <h3>Unix</h3>
+            <pre><code data-trim contenteditable>
+tr 'A-Z' 'a-z' < ~/shakespeare.txt | tr -sc 'A-Za-z' '\n' | \
+    sort | uniq -c | sort -n -r | head
+            </code></pre>
+        </section>
+        <section>
+            <pre><code data-trim contenteditable>
+$ tr 'A-Z' 'a-z' < ~/shakespeare.txt | tr -sc 'A-Za-z' '\n' | sort | uniq -c | sort -n -r | head
+  27843 the
+  26847 and
+  22538 i
+  19882 to
+  18307 of
+  14800 a
+  13928 you
+  12490 my
+  11563 that
+  11183 in
+            </code></pre>
+        </section>
     </section>
 
     <section data-background="./img/bg.png">
