@@ -470,7 +470,9 @@ reduce(operator.add, [21, 18, 29])
             <h3>How could reduce work?</h3>
             <pre><code data-trim contenteditable>
 def reduce(func, lst):
-    pass
+    if len(lst) < 2:
+        return lst[0]
+    return func(lst[0], reduce(func, lst[1:]))
             </code></pre>
         </section>
         <section>
@@ -480,6 +482,13 @@ input_list = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]]
 reduce(set.intersection, map(set, input_list))
 => set([3, 4, 5])
             </code></pre>
+        </section>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+            <h3>Tail recursion</h3>
+            <p></p>
         </section>
     </section>
 
