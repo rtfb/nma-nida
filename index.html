@@ -175,6 +175,33 @@ for (auto &s : vs) {
 }
             </code></pre>
         </section>
+        <section>
+            <p>What does this code do?</p>
+            <pre><code data-trim contenteditable>
+var arr = [3, 6, 2];
+for (var i = 0; i < arr.length; ++i) {
+    print(arr[i]);
+}
+            </code></pre>
+        </section>
+        <section>
+            <p>What does <strong>this</strong> code do?</p>
+            <pre><code data-trim contenteditable>
+var arr = [3, 6, 2];
+for (var i = arr.length; i > 0; --i) {
+    print(arr[i]);
+}
+            </code></pre>
+        </section>
+        <section>
+            <p>Why not write it like this?</p>
+            <pre><code data-trim contenteditable>
+var arr = [3, 6, 2];
+arr.reverse().forEach(function(item) {
+    print(item);
+});
+            </code></pre>
+        </section>
     </section>
 
     <section data-background="./img/bg.png">
@@ -237,16 +264,223 @@ $ tr 'A-Z' 'a-z' < ~/shakespeare.txt | tr -sc 'A-Za-z' '\n' | sort | uniq -c | s
 
     <section data-background="./img/bg.png">
         <!-- <h2>Patterns</h2> -->
-        <h3>Patterns/algorithms</h3>
+        <h3>Algorithms and patterns</h3>
         <p>Map</p>
         <p>Filter</p>
         <p>Zip</p>
-        <p>Gather</p>
-        <p>Scatter</p>
-        <p>Transpose</p>
         <p>Reduce</p>
         <p>Scan</p>
         <p>Histogram</p>
+
+        <p>Map</p>
+        <p>Gather</p>
+        <p>Scatter</p>
+        <p>Transpose</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+            <h3>Map</h3>
+            <p>Takes a function and a list, produces new list:</p>
+            <pre><code data-trim contenteditable>
+map(chr, [79, 72, 65, 73, 33])
+=> ['O', 'H', 'A', 'I', '!']
+            </code></pre>
+        </section>
+        <section>
+            <h3>Average age of people?</h3>
+            <pre><code data-trim contenteditable>
+person = {
+    name: 'John',
+    surname: 'Foo',
+    age: 27,
+    height: 172,
+    weight: 70.2,
+    eye_color: '#ff00ff',
+    ...
+}
+people = [...]
+            </code></pre>
+        </section>
+        <section>
+            <h3>Explicit loop</h3>
+            <pre><code data-trim contenteditable>
+sum = 0
+for p in people:
+    sum += p.age
+sum / len(people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>sum()</h3>
+            <pre><code data-trim contenteditable>
+sum([1, 2, 3, 4, 5])
+=> 15
+            </code></pre>
+        </section>
+        <section>
+            <h3>Map</h3>
+            <pre><code data-trim contenteditable>
+sum(map(lambda p: p.age, people)) / len(people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>Lambda??</h3>
+            <pre><code data-trim contenteditable>
+lambda argument: do_something_with(argument)
+
+def func(argument):
+    do_something_with(argument)
+            </code></pre>
+        </section>
+        <section>
+            <h3>Could be written as:</h3>
+            <pre><code data-trim contenteditable>
+def get_age(person):
+    return person.age
+
+sum(map(get_age, people)) / len(people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>How does map() work?</h3>
+            <pre><code data-trim contenteditable>
+def map(fn, lst):
+    result = []
+    for i in lst:
+        result.append(fn(i))
+    return result
+            </code></pre>
+        </section>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+            <h3>Average age of adults?</h3>
+            <pre><code data-trim contenteditable>
+person = {
+    name: 'John',
+    surname: 'Foo',
+    age: 27,
+    height: 172,
+    weight: 70.2,
+    eye_color: '#ff00ff',
+    ...
+}
+people = [...]
+            </code></pre>
+        </section>
+        <section>
+            <h3>Adults?</h3>
+            <pre><code data-trim contenteditable>
+adults = pick_adults(people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>Filter</h3>
+            <pre><code data-trim contenteditable>
+adults = filter(lambda p: p.age >= 18, people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>Filter and sum</h3>
+            <pre><code data-trim contenteditable>
+adults = filter(lambda p: p.age >= 18, people)
+sum(map(lambda p: p.age, adults)) / len(people)
+            </code></pre>
+        </section>
+        <section>
+            <h3>How does filter() work?</h3>
+            <pre><code data-trim contenteditable>
+def filter(predicate, lst):
+    result = []
+    for i in lst:
+        if predicate(i):
+            result.append(i)
+    return result
+            </code></pre>
+        </section>
+        <section>
+            <h3>Predicates</h3>
+            <p>In general, a function that takes an object and returns some
+            bool about it is called a predicate</p>
+            <p>In Lisp there's a convention to call predicates with suffix -p:</p>
+            <pre><code data-trim contenteditable>
+adultp
+numberp
+listp
+standard-char-p
+            </code></pre>
+        </section>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h4>Side story: AoS vs. SoA</h4>
+        <p>AoS: Array of Structs</p>
+        <p>SoA: Struct of Arrays</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+            <h3>Zip</h3>
+            <pre><code data-trim contenteditable>
+names = ['Luke', 'Leia', 'Han']
+ages = [21, 18, 29]
+zip(names, ages)
+=> [('Luke', 21), ('Leia', 18), ('Han', 29)]
+            </code></pre>
+        </section>
+        <section>
+            <h3>Usually used in conjunction with something else:</h3>
+            <pre><code data-trim contenteditable>
+map(process_person, zip(names, ages))
+            </code></pre>
+        </section>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <section>
+            <h3>Reduce</h3>
+            <h4>aka fold</h4>
+            <p>Takes a list and reduces it to a single value</p>
+        </section>
+        <section>
+            <h3>We've seen one special case already:</h3>
+            <pre><code data-trim contenteditable>
+sum([21, 18, 29])
+            </code></pre>
+        </section>
+        <section>
+            <h3>How could it work?</h3>
+            <pre><code data-trim contenteditable>
+def sum(lst):
+    acc = 0
+    for i in lst:
+        acc += i
+    return acc
+            </code></pre>
+        </section>
+        <section>
+            <h3>But it could be more general:</h3>
+            <pre><code data-trim contenteditable>
+reduce(operator.add, [21, 18, 29])
+            </code></pre>
+        </section>
+        <section>
+            <h3>How could reduce work?</h3>
+            <pre><code data-trim contenteditable>
+def reduce(func, lst):
+    pass
+            </code></pre>
+        </section>
+        <section>
+            <h3>More useful example:</h3>
+            <pre><code data-trim contenteditable>
+input_list = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]]
+reduce(set.intersection, map(set, input_list))
+=> set([3, 4, 5])
+            </code></pre>
+        </section>
     </section>
 
 			</div>
