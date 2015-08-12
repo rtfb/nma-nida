@@ -63,6 +63,43 @@
     </section>
 
     <section data-background="./img/bg.png">
+        <!-- <h2>Conceptual intro</h2> -->
+        <h3>What is functional programming?</h3>
+        <h5>Random facts:</h5>
+        <p>Based on lambda calculus, invented in 1930s (by Alonzo Church)</p>
+        <p>First implemented in Lisp in 1958 (by John McCarthy)</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <!-- <h2>Conceptual intro</h2> -->
+        <h3>What is functional programming?</h3>
+        <h5>Intuitive explanation:</h5>
+        <p>Break down your problem in such a way that it could be solved by
+           functions and functions only. Like this:</p>
+        <pre><code data-trim contenteditable>
+f(g(h(i(initial_data))))
+=> final_result
+        </code></pre>
+        <p>No ifs, no loops, no variables, no nothing. Just functions.</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Purity</h3>
+        <p>...but most importantly, no side effects!</p>
+        <p>Every function should be mathematically pure, taking parameters and
+        producing its output independently from anything else in the world.</p>
+    </section>
+
+    <section data-background="./img/bg.png">
+        <h3>Full purity is impossible</h3>
+        <p>Because I/O is also a side effect!</p>
+        <!--
+            So a purely pure program can only compute, it can't display it's
+            results, which is not terribly useful :-)
+        -->
+    </section>
+
+    <section data-background="./img/bg.png">
         <section>
             <h2>Let's see some Python code:</h2>
             <pre><code data-trim contenteditable>
@@ -98,43 +135,6 @@ triplicate(['a', 'b', 'c']);
 => ("aaa", "bbb", "ccc")
             </code></pre>
         </section>
-    </section>
-
-    <section data-background="./img/bg.png">
-        <!-- <h2>Conceptual intro</h2> -->
-        <h3>What is functional programming?</h3>
-        <h5>Random facts:</h5>
-        <p>Based on lambda calculus, invented in 1930s (by Alonzo Church)</p>
-        <p>First implemented in Lisp in 1958 (by John McCarthy)</p>
-    </section>
-
-    <section data-background="./img/bg.png">
-        <!-- <h2>Conceptual intro</h2> -->
-        <h3>What is functional programming?</h3>
-        <h5>Intuitive explanation:</h5>
-        <p>Break down your problem in such a way that it could be solved by
-           functions and functions only. Like this:</p>
-        <pre><code data-trim contenteditable>
-f(g(h(i(initial_data))))
-=> final_result
-        </code></pre>
-        <p>No ifs, no loops, no variables, no nothing. Just functions.</p>
-    </section>
-
-    <section data-background="./img/bg.png">
-        <h3>Purity</h3>
-        <p>...but most importantly, no side effects!</p>
-        <p>Every function should be mathematically pure, taking parameters and
-        producing its output independently from anything else in the world.</p>
-    </section>
-
-    <section data-background="./img/bg.png">
-        <h3>Full purity is impossible</h3>
-        <p>Because I/O is also a side effect!</p>
-        <!--
-            So a purely pure program can only compute, it can't display it's
-            results, which is not terribly useful :-)
-        -->
     </section>
 
     <section data-background="./img/bg.png">
@@ -506,7 +506,7 @@ RuntimeError: maximum recursion depth exceeded
             </code></pre>
         </section>
         <section>
-            <p>So proper functional language should have tail recursive call
+            <p>So ideally a functional language should have tail recursive call
             optimization. Python doesn't.</p>
         </section>
     </section>
