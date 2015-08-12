@@ -469,10 +469,10 @@ reduce(operator.add, [21, 18, 29])
         <section>
             <h3>How could reduce work?</h3>
             <pre><code data-trim contenteditable>
-def reduce(func, lst):
+def my_reduce(func, lst):
     if len(lst) < 2:
         return lst[0]
-    return func(lst[0], reduce(func, lst[1:]))
+    return func(lst[0], my_reduce(func, lst[1:]))
             </code></pre>
         </section>
         <section>
@@ -488,7 +488,26 @@ reduce(set.intersection, map(set, input_list))
     <section data-background="./img/bg.png">
         <section>
             <h3>Tail recursion</h3>
-            <p></p>
+            <p>What you think happens if I call this?</p>
+            <pre><code data-trim contenteditable>
+my_reduce(operator.add, range(1000))
+            </code></pre>
+        </section>
+        <section>
+            <p>That's what :-)</p>
+            <pre><code data-trim contenteditable>
+File "mr.py", line 7, in my_reduce
+return func(lst[0], my_reduce(func, lst[1:]))
+File "mr.py", line 7, in my_reduce
+return func(lst[0], my_reduce(func, lst[1:]))
+File "mr.py", line 7, in my_reduce
+return func(lst[0], my_reduce(func, lst[1:]))
+RuntimeError: maximum recursion depth exceeded
+            </code></pre>
+        </section>
+        <section>
+            <p>So proper functional language should have tail recursive call
+            optimization. Python doesn't.</p>
         </section>
     </section>
 
