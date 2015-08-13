@@ -482,6 +482,10 @@ def my_reduce(func, lst):
         return lst[0]
     return func(lst[0], my_reduce(func, lst[1:]))
             </code></pre>
+            <p>does roughly this:</p>
+            <pre><code data-trim contenteditable>
+func(a, func(b, func(c, func(d, ...))))
+            </code></pre>
         </section>
         <section>
             <h3>More useful example:</h3>
