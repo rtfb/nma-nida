@@ -67,11 +67,6 @@ def merge(lst1, lst2):
 def mergesort(lst):
     if len(lst) == 1:
         return lst
-    if len(lst) == 2:
-        if lst[1] < lst[0]:
-            return [lst[1], lst[0]]
-        else:
-            return lst
     mid = len(lst) / 2
     left = lst[:mid]
     right = lst[mid:]
@@ -109,6 +104,9 @@ print(merge([], [1, 4, 17]))
 print(merge([1], [1, 4]))
 print(merge([1, 2], [4]))
 print(merge([1, 2], [1]))
+print(merge([1], [2]))
+print(merge([2], [1]))
+print(merge([3], [3]))
 print('====')
 l = [5, 2, 7, 32, 1, 56, 4, 6, 5, 4, 65, 54, 6, 45]
 #l = [32, 1, 56, 4]
